@@ -2,6 +2,7 @@ package com.mz.example.db.base.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.domain.Persistable;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
@@ -9,7 +10,7 @@ import javax.persistence.MappedSuperclass;
 @Getter
 @Setter
 @MappedSuperclass
-public abstract class BaseEntity {
+public abstract class BaseEntity implements Persistable<Long>{
 
     @Column(name = "COLUMN_1", length = 70)
     private String column1;
@@ -71,4 +72,9 @@ public abstract class BaseEntity {
     private String column29;
     @Column(name = "COLUMN_30", length = 70)
     private String column30;
+
+    @Override
+    public boolean isNew() {
+        return true;
+    }
 }

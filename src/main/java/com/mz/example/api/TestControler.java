@@ -94,7 +94,8 @@ public class TestControler {
         if(testSize - currentlyProcessed <  IdentityPerformanceTestingService.MAX_PACKAGE_SIZE){
             return (int) (testSize - currentlyProcessed);
         }
-        return ThreadLocalRandom.current().nextInt(0, IdentityPerformanceTestingService.MAX_PACKAGE_SIZE + 1);
+//        return ThreadLocalRandom.current().nextInt(0, IdentityPerformanceTestingService.MAX_PACKAGE_SIZE + 1);
+        return IdentityPerformanceTestingService.MAX_PACKAGE_SIZE;
     }
 
     private static class TestRequestMapping {
