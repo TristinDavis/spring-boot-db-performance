@@ -1,4 +1,4 @@
-package com.mz.example.db.long_id.entity;
+package com.mz.example.db.no_id.entity;
 
 import com.mz.example.db.base.entity.BaseEntity;
 import lombok.Getter;
@@ -11,7 +11,7 @@ import javax.persistence.MappedSuperclass;
 @Getter
 @Setter
 @MappedSuperclass
-public abstract class LongBaseEntity extends BaseEntity{
+public abstract class NoIdBaseEntity extends BaseEntity{
 
     @Id
     @Column(name = "ID")

@@ -23,28 +23,25 @@ public class IdentityTest {
     private IdentityPerformanceTestingService identityPerformanceTestingService;
 
     @Autowired
-    private PrimaryTableRepository primaryTableRepository;
+    private PrimaryTableIRepository primaryTableIRepository;
     @Autowired
-    private NestedTable1Repository nestedTable1Repository;
+    private NestedTable1IRepository nestedTable1IRepository;
     @Autowired
-    private NestedTable2Repository nestedTable2Repository;
+    private NestedTable2IRepository nestedTable2IRepository;
     @Autowired
-    private NestedTable3Repository nestedTable3Repository;
+    private NestedTable3IRepository nestedTable3IRepository;
     @Autowired
-    private NestedTable4Repository nestedTable4Repository;
+    private NestedTable4IRepository nestedTable4IRepository;
 
     @Test
     public void testSave() throws Exception{
         identityPerformanceTestingService.performanceTest(1);
 
-//        Thread.sleep(1000*60*5);
-
-        Assert.assertTrue(primaryTableRepository.findById(1L).isPresent());//This works
-        assertTableContent(primaryTableRepository);//Why this fails?
-        assertTableContent(nestedTable1Repository);
-        assertTableContent(nestedTable2Repository);
-        assertTableContent(nestedTable3Repository);
-        assertTableContent(nestedTable4Repository);
+        assertTableContent(primaryTableIRepository);
+        assertTableContent(nestedTable1IRepository);
+        assertTableContent(nestedTable2IRepository);
+        assertTableContent(nestedTable3IRepository);
+        assertTableContent(nestedTable4IRepository);
     }
 
     private void assertTableContent(CrudRepository<? extends IdentityBaseEntity, Long> repository){
