@@ -5,7 +5,9 @@ import com.mz.example.service.identity.IdentityPerformanceTestingService;
 import com.mz.example.service.long_id.LongIdPerformanceTestingService;
 import com.mz.example.service.no_id.NoIdPerformanceTestingService;
 import com.mz.example.service.one_to_one.OneToOnePerformanceTestingService;
-import io.micrometer.core.instrument.*;
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.MeterRegistry;
+import io.micrometer.core.instrument.Timer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.PostConstruct;
-import java.util.concurrent.ThreadLocalRandom;
 
 @RestController("api/test")
 public class TestControler {

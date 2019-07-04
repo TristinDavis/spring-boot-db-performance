@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+
 @Service
 public class LongIdPerformanceTestingService extends BasePerformanceTestingService{
 
@@ -28,6 +30,11 @@ public class LongIdPerformanceTestingService extends BasePerformanceTestingServi
         if(packageSize < 0 || packageSize > MAX_PACKAGE_SIZE){
             throw new IllegalArgumentException("Invalid package size: "+packageSize);
         }
+        ArrayList<PrimaryTableL> primaryTableLS = new ArrayList<>();
+        ArrayList<NestedTable1L> nestedTable1LS = new ArrayList<>();
+        ArrayList<NestedTable2L> nestedTable2LS = new ArrayList<>();
+        ArrayList<NestedTable3L> nestedTable3LS = new ArrayList<>();
+        ArrayList<NestedTable4L> nestedTable4LS = new ArrayList<>();
         for(int i = 0; i < packageSize; ++i){
             PrimaryTableL primaryTable = fillWithDataInternal(new PrimaryTableL());
             NestedTable1L nestedTable1 = fillWithDataInternal(new NestedTable1L());
@@ -37,12 +44,22 @@ public class LongIdPerformanceTestingService extends BasePerformanceTestingServi
 
             ++ID;
 
-            primaryTableLRepository.save(primaryTable);
-            nestedTable1LRepository.save(nestedTable1);
-            nestedTable2LRepository.save(nestedTable2);
-            nestedTable3LRepository.save(nestedTable3);
-            nestedTable4LRepository.save(nestedTable4);
+            primaryTableLS.add(primaryTable);
+            nestedTable1LS.add(nestedTable1);
+            nestedTable2LS.add(nestedTable2);
+            nestedTable3LS.add(nestedTable3);
+            nestedTable4LS.add(nestedTable4);
+//            primaryTableLRepository.save(primaryTable);
+//            nestedTable1LRepository.save(nestedTable1);
+//            nestedTable2LRepository.save(nestedTable2);
+//            nestedTable3LRepository.save(nestedTable3);
+//            nestedTable4LRepository.save(nestedTable4);
         }
+        primaryTableLRepository.saveAll(primaryTableLS);
+        nestedTable1LRepository.saveAll(nestedTable1LS);
+        nestedTable2LRepository.saveAll(nestedTable2LS);
+        nestedTable3LRepository.saveAll(nestedTable3LS);
+        nestedTable4LRepository.saveAll(nestedTable4LS);
     }
 
     private <ENTITY extends LongBaseEntity> ENTITY fillWithDataInternal(ENTITY input){
